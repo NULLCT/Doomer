@@ -9,7 +9,7 @@ int main() {
   window.setFramerateLimit(60);
   window.setVerticalSyncEnabled(false);
 
-  std::cout << "Hellao???a???\n";
+  std::cout << "a";
  
   Chara chara;
   Rays rays(10,64);
