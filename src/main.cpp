@@ -20,7 +20,7 @@ int main() {
         window.close();
         break;
       }
-    }
+    } 
     window.clear();
 
     chara.update(&window);
