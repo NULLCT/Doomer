@@ -19,7 +19,7 @@ int main() {
   window.setVerticalSyncEnabled(false);
 
   Chara chara;
-  Rays rays(10, 64);
+  Rays rays(32, 256);
   Walls walls;
 
   while (window.isOpen()) {
