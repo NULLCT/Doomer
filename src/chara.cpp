@@ -2,6 +2,7 @@
 
 Chara::Chara() : circle(size) {
   circle.setFillColor(sf::Color::White);
+  circle.setOrigin(size,size);
 }
 
 void Chara::update(sf::RenderWindow* _window) {
@@ -16,4 +17,8 @@ void Chara::update(sf::RenderWindow* _window) {
     circle.setPosition(circle.getPosition() + sf::Vector2f(movespeed, 0));
 
   _window->draw(circle);
+}
+
+sf::Vector2f Chara::getPosition() {
+  return circle.getPosition();
 }

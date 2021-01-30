@@ -12,4 +12,5 @@ private:
 public:
   Chara();
   void update(sf::RenderWindow* _window);
+  sf::Vector2f getPosition();
 };
