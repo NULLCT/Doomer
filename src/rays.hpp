@@ -4,7 +4,6 @@
 #include <vector>
 #define _USE_MATH_DEFINES
 #include <math.h>
-#include "lineseg.hpp"
 
 using namespace std;
 
@@ -37,4 +36,7 @@ public:
     }
   }
 
+  vector<sf::Vertex[2]> *getRays() {
+    return &ray;
+  }
 };
