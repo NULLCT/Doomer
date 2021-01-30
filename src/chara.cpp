@@ -6,13 +6,13 @@ Chara::Chara() : circle(size) {
 
 void Chara::update(sf::RenderWindow* _window) {
   //key action
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     circle.setPosition(circle.getPosition() + sf::Vector2f(0, -movespeed));
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     circle.setPosition(circle.getPosition() + sf::Vector2f(0, movespeed));
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     circle.setPosition(circle.getPosition() + sf::Vector2f(-movespeed, 0));
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     circle.setPosition(circle.getPosition() + sf::Vector2f(movespeed, 0));
 
   _window->draw(circle);
