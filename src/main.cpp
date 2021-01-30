@@ -9,18 +9,16 @@ int main() {
   window.setFramerateLimit(60);
   window.setVerticalSyncEnabled(false);
 
-  std::cout << "a";
- 
   Chara chara;
-  Rays rays(10,64);
- 
+  Rays rays(10, 64);
+
   while (window.isOpen()) {
     sf::Event event;
     while (window.pollEvent(event)) {
-      switch(event.type){
-        case sf::Event::Closed:
-          window.close();
-          break;
+      switch (event.type) {
+      case sf::Event::Closed:
+        window.close();
+        break;
       }
     }
     window.clear();
@@ -28,6 +26,6 @@ int main() {
     chara.update(&window);
     rays.update(&window, chara.getPosition());
 
-    window.display(); 
+    window.display();
   }
 }
