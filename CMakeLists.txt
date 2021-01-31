@@ -5,6 +5,9 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set( doomer_src
     src/main.cpp
+    src/chara.hpp
+    src/rays.hpp
+    src/walls.hpp
   )
 add_executable(Doomer ${doomer_src})
 
