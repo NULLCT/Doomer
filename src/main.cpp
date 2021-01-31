@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void checkConflictAndDraw(sf::RenderWindow *_window, vector<sf::VertexArray>* rays, vector<sf::VertexArray>* walls,sf::Vector2f *_charapos,int _raylength) {
+void checkConflictAndDraw(sf::RenderWindow *_window, vector<sf::VertexArray>* rays, vector<sf::VertexArray>* walls,sf::Vector2f _charapos,int _raylength) {
   for (auto& wall : *walls) {
     int viewcnt = 1;
     for (auto& ray : *rays) {
@@ -38,7 +38,7 @@ void checkConflictAndDraw(sf::RenderWindow *_window, vector<sf::VertexArray>* ra
           circle.setPosition(crossxpos, crossypos);
           _window->draw(circle);
 
-          double lengthfromchara = sqrt(pow(crossxpos - _charapos->x, 2) + pow(crossypos - _charapos->y, 2));
+          double lengthfromchara = sqrt(pow(crossxpos - _charapos.x, 2) + pow(crossypos - _charapos.y, 2));
           sf::RectangleShape rect;
           rect.setSize(sf::Vector2f(1000 / rays->size(), (_raylength - lengthfromchara)));
           rect.setPosition(sf::Vector2f(2000 - (viewcnt * (1000 / rays->size())), 100 + (lengthfromchara)/2));
@@ -75,7 +75,7 @@ int main() {
     chara.update(&window);
     rays.update(&window, chara.getPosition());
     walls.update(&window);
-    checkConflictAndDraw(&window,rays.getRays(), walls.getWalls(),&chara.getPosition(),rays.getRayLength());
+    checkConflictAndDraw(&window,rays.getRays(), walls.getWalls(),chara.getPosition(),rays.getRayLength());
 
     window.display();
   }
