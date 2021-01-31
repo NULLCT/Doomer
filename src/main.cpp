@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void checkConflictAndDraw(sf::RenderWindow *_window, vector<sf::Vertex[2]>* rays, vector<sf::Vertex[2]>* walls) {
+void checkConflictAndDraw(sf::RenderWindow *_window, vector<sf::VertexArray>* rays, vector<sf::VertexArray>* walls) {
   for (auto& ray : *rays) {
     //TODO: ditect conflict
   }

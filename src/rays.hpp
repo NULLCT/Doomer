@@ -12,14 +12,14 @@ private:
   int laynum;
   int laylength;
 
-  vector<sf::Vertex[2]> ray;
+  vector<sf::VertexArray> ray;
 
   float getRadianFromAngle(const float& _angle) {
     return _angle * (M_PI / 180);
   }
 
 public:
-  Rays(int _laynum, int _laylength) : ray(_laynum) {
+  Rays(int _laynum, int _laylength) : ray(_laynum,sf::VertexArray(sf::LineStrip,2)) {
     laynum = _laynum;
     laylength = _laylength;
   }
@@ -30,13 +30,13 @@ public:
     for (int i = 0; i < laynum; i++) {
       angle += 180.f / (laynum + 1);
       ray[i][0] = sf::Vector2f(_pos);
-      ray[i][1] = ray[i]->position + sf::Vector2f(sf::Vector2f(cos(getRadianFromAngle(angle)) * laylength, -sin(getRadianFromAngle(angle)) * laylength));
+      ray[i][1] = sf::Vector2f(_pos) + sf::Vector2f(sf::Vector2f(cos(getRadianFromAngle(angle)) * laylength, -sin(getRadianFromAngle(angle)) * laylength));
 
-      _window->draw(ray[i], 2, sf::Lines);
+      _window->draw(ray[i]);
     }
   }
 
-  vector<sf::Vertex[2]> *getRays() {
+  vector<sf::VertexArray> *getRays() {
     return &ray;
   }
 };

@@ -7,10 +7,10 @@ using namespace std;
 
 class Walls {
 private:
-  vector<sf::Vertex[2]> wall;
+  vector<sf::VertexArray> wall;
 
 public:
-  Walls() : wall(2){
+  Walls() : wall(2,sf::VertexArray(sf::LineStrip,2)){
     wall[0][0].position = sf::Vector2f(0, 0);
     wall[0][1].position = sf::Vector2f(100, 100);
 
@@ -20,11 +20,11 @@ public:
   
   void update(sf::RenderWindow* _window) {
     for (auto& i : wall) {
-      _window->draw(i,2,sf::Lines);
+      _window->draw(i);
     }
   }
 
-  vector<sf::Vertex[2]> *getWalls() {
+  vector<sf::VertexArray> *getWalls() {
     return &wall;
   }
 };
