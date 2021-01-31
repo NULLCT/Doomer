@@ -4,8 +4,9 @@
 
 class Chara {
 private:
-  const int size = 10;
-  const int movespeed = 5;
+  int size = 10; // chara size
+  int movespeed = 5; // chara move speed
+
 
   sf::CircleShape circle;
 
