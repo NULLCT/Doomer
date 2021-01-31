@@ -10,12 +10,15 @@ private:
   vector<sf::VertexArray> wall;
 
 public:
-  Walls() : wall(2,sf::VertexArray(sf::LineStrip,2)){
+  Walls() : wall(3,sf::VertexArray(sf::LineStrip,2)){
     wall[0][0].position = sf::Vector2f(100, 100);
     wall[0][1].position = sf::Vector2f(200, 200);
 
     wall[1][0].position = sf::Vector2f(200, 200);
     wall[1][1].position = sf::Vector2f(100, 300);
+
+    wall[2][0].position = sf::Vector2f(200, 200);
+    wall[2][1].position = sf::Vector2f(800, 300);
   }
   
   void update(sf::RenderWindow* _window) {

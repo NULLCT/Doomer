@@ -39,4 +39,8 @@ public:
   vector<sf::VertexArray> *getRays() {
     return &ray;
   }
+
+  int getRayLength() {
+    return laylength;
+  }
 };
