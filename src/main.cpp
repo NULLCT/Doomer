@@ -60,6 +60,7 @@ int main() {
   Chara chara;
   Rays rays(64, 256);
   Walls walls;
+  bool mousetr = false;
 
   while (window.isOpen()) {
     sf::Event event;
@@ -71,6 +72,23 @@ int main() {
       }
     } 
     window.clear();
+
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+      if (!mousetr) {
+        mousetr = true;
+        cout << "d\n";
+        walls.getWalls()->push_back(sf::VertexArray(sf::LineStrip, 2));
+        (walls.getWalls()->end()-1)[0][0].position = sf::Vector2f(sf::Mouse::getPosition(window).x,sf::Mouse::getPosition(window).y);
+        (walls.getWalls()->end()-1)[0][1].position = chara.getPosition();
+      }
+    }
+    else {
+      mousetr = false;
+    }
+
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Right)) {
+      walls.getWalls()->clear();
+    }
 
     chara.update(&window);
     rays.update(&window, chara.getPosition());
