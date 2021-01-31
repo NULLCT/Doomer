@@ -7,8 +7,8 @@
 
 using namespace std;
 
-void checkConflictAndDraw(sf::RenderWindow *_window, vector<sf::VertexArray>* rays, vector<sf::VertexArray>* walls) {
-  for (auto& ray : *rays) for(auto &wall:*walls) {
+void checkConflictAndDraw(sf::RenderWindow* _window, vector<sf::VertexArray>* rays, vector<sf::VertexArray>* walls) {
+  for (auto& ray : *rays) for (auto& wall : *walls) {
     /*
       ray[0].pos => ray[1].posw
       wall[0].pos => wall[1].pos
@@ -19,13 +19,23 @@ void checkConflictAndDraw(sf::RenderWindow *_window, vector<sf::VertexArray>* ra
     double walltilt = (wall[0].position.y - wall[1].position.y) / (wall[0].position.x - wall[1].position.x);
     double walladd = wall[0].position.y - (wall[0].position.x * walltilt);
 
-    double crossxpos =  (rayadd - walladd) / -(raytilt - walltilt);
+    double crossxpos = (rayadd - walladd) / -(raytilt - walltilt);
     double crossypos = (crossxpos * raytilt) + rayadd;
 
-    sf::CircleShape circle(10);
-    circle.setOrigin(10, 10);
-    circle.setPosition(crossxpos,crossypos);
-    _window->draw(circle);
+    if (isinf(raytilt)) {
+      crossxpos = ray[0].position.x;
+      crossypos = (crossxpos * walltilt) + walladd;
+    }
+
+    if ((wall[0].position.x <= crossxpos && crossxpos <= wall[1].position.x) || (wall[1].position.x <= crossxpos && crossxpos <= wall[0].position.x)) {
+      if ((ray[0].position.x <= crossxpos && crossxpos <= ray[1].position.x) || (ray[1].position.x <= crossxpos && crossxpos <= ray[0].position.x)) {
+        constexpr int size = 5;
+        sf::CircleShape circle(size);
+        circle.setOrigin(size, size);
+        circle.setPosition(crossxpos, crossypos);
+        _window->draw(circle);
+      }
+    }
   }
 }
 
@@ -35,7 +45,7 @@ int main() {
   window.setVerticalSyncEnabled(false);
 
   Chara chara;
-  Rays rays(2, 64);
+  Rays rays(16, 256);
   Walls walls;
 
   while (window.isOpen()) {
@@ -46,13 +56,13 @@ int main() {
         window.close();
         break;
       }
-    } 
+    }
     window.clear();
 
     chara.update(&window);
     rays.update(&window, chara.getPosition());
     walls.update(&window);
-    checkConflictAndDraw(&window,rays.getRays(), walls.getWalls());
+    checkConflictAndDraw(&window, rays.getRays(), walls.getWalls());
 
     window.display();
   }
