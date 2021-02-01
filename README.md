@@ -9,3 +9,5 @@ now
 | --- | --- |
 | WASD | Move |
 | Mouse | Direction |
+| Left Click | Add wall |
+| Right Click | Remove all wall |
