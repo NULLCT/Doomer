@@ -14,7 +14,7 @@ int main() {
   window.setVerticalSyncEnabled(false);
 
   Chara chara;
-  Rays rays(64, 512);
+  Rays rays(256, 512);
   Walls walls;
   CheckConflict checkconflicter(rays.getRays()->size());
 

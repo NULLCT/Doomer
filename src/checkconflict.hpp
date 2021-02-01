@@ -49,21 +49,24 @@ public:
         //draw conflict pos
         if ((wall[0].position.x <= crossxpos && crossxpos <= wall[1].position.x) || (wall[1].position.x <= crossxpos && crossxpos <= wall[0].position.x)) {
           if ((ray[0].position.x <= crossxpos && crossxpos <= ray[1].position.x) || (ray[1].position.x <= crossxpos && crossxpos <= ray[0].position.x)) {
+
+            double lengthfromchara = sqrt(pow(crossxpos - _charapos.x, 2) + pow(crossypos - _charapos.y, 2));
+
+            if (trs[viewcnt - 1]) {
+              if (rects[viewcnt - 1].getSize().y > (_raylength - lengthfromchara)) {
+                viewcnt++;
+                continue;
+              }
+            }
+            else {
+              trs[viewcnt - 1] = true;
+            }
+
             constexpr int size = 5;
             sf::CircleShape circle(size);
             circle.setOrigin(size, size);
             circle.setPosition(crossxpos, crossypos);
             _window->draw(circle);
-
-            double lengthfromchara = sqrt(pow(crossxpos - _charapos.x, 2) + pow(crossypos - _charapos.y, 2));
-
-            if (trs[viewcnt - 1]) {
-              if (rects[viewcnt - 1].getSize().y > (_raylength - lengthfromchara))
-                continue;
-            }
-            else {
-              trs[viewcnt - 1] = true;
-            }
 
             sf::RectangleShape rect;
             rects[viewcnt - 1].setSize(sf::Vector2f(1000 / rays->size(), (_raylength - lengthfromchara)));
