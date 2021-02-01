@@ -8,7 +8,7 @@ set( doomer_src
     src/chara.hpp
     src/rays.hpp
     src/walls.hpp
-  )
+   "src/checkconflict.hpp")
 add_executable(Doomer ${doomer_src})
 
 set(SFML_DIR "SFML/lib/cmake/SFML")
