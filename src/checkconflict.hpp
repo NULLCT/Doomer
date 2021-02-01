@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <math.h>
 
 using namespace std;
 
@@ -21,7 +22,7 @@ public:
     setSize(_size);
   }
 
-  void update(sf::RenderWindow* _window, vector<sf::VertexArray>* rays, vector<sf::VertexArray>* walls, sf::Vector2f _charapos, int _raylength) {
+  void update(sf::RenderWindow* _window, vector<sf::VertexArray>* rays, vector<sf::VertexArray>* walls, sf::Vector2f _charapos, int _raylength, double _raydirection) {
     for (auto& tr : trs)
       tr = false;
 
@@ -68,9 +69,10 @@ public:
             circle.setPosition(crossxpos, crossypos);
             _window->draw(circle);
 
-            sf::RectangleShape rect;
-            rects[viewcnt - 1].setSize(sf::Vector2f(1000 / rays->size(), (_raylength - lengthfromchara)));
-            rects[viewcnt - 1].setPosition(sf::Vector2f(1000 + (viewcnt * (1000 / rays->size())), 100 + (lengthfromchara) / 2));
+            // What happened?????????????????????
+            // pls god
+            rects[viewcnt - 1].setSize(sf::Vector2f(1000 / rays->size(), (lengthfromchara * cos(M_PI * (double(viewcnt) / rays->size()) * (viewcnt - int(rays->size() / 2))))));
+            rects[viewcnt - 1].setPosition(sf::Vector2f(1000 + (viewcnt * (1000 / rays->size())), 100));
             rects[viewcnt - 1].setFillColor(sf::Color((1 - lengthfromchara / double(_raylength)) * 255, (1 - lengthfromchara / double(_raylength)) * 255, (1 - lengthfromchara / double(_raylength)) * 255));
           }
         }

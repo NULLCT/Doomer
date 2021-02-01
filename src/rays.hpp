@@ -20,9 +20,13 @@ public:
     laylength = _laylength;
   }
 
+  double getDirectionBetweenCharaToMouse(sf::RenderWindow *_window, const sf::Vector2f& _charapos) {
+    return atan2(sf::Mouse::getPosition(*_window).y - _charapos.y, sf::Mouse::getPosition(*_window).x - _charapos.x);
+  }
+
   void update(sf::RenderWindow* _window, const sf::Vector2f& _charapos) {
     //set direction
-    double direction = atan2(sf::Mouse::getPosition(*_window).y - _charapos.y, sf::Mouse::getPosition(*_window).x - _charapos.x);
+    double direction = getDirectionBetweenCharaToMouse(_window, _charapos);
 
     float angle = direction - M_PI / 2;
 

@@ -11,10 +11,9 @@ using namespace std;
 int main() {
   sf::RenderWindow window(sf::VideoMode(2000, 1000), "Doomer");
   window.setFramerateLimit(60);
-  window.setVerticalSyncEnabled(false);
 
   Chara chara;
-  Rays rays(256, 512);
+  Rays rays(128,256);
   Walls walls;
   CheckConflict checkconflicter(rays.getRays()->size());
 
@@ -50,7 +49,7 @@ int main() {
     chara.update(&window);
     rays.update(&window, chara.getPosition());
     walls.update(&window);
-    checkconflicter.update(&window,rays.getRays(), walls.getWalls(),chara.getPosition(),rays.getRayLength());
+    checkconflicter.update(&window,rays.getRays(), walls.getWalls(),chara.getPosition(),rays.getRayLength(),rays.getDirectionBetweenCharaToMouse(&window,chara.getPosition()));
 
     window.display();
   }
