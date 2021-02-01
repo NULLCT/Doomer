@@ -70,7 +70,7 @@ public:
 
             sf::RectangleShape rect;
             rects[viewcnt - 1].setSize(sf::Vector2f(1000 / rays->size(), (_raylength - lengthfromchara)));
-            rects[viewcnt - 1].setPosition(sf::Vector2f(2000 - (viewcnt * (1000 / rays->size())), 100 + (lengthfromchara) / 2));
+            rects[viewcnt - 1].setPosition(sf::Vector2f(1000 + (viewcnt * (1000 / rays->size())), 100 + (lengthfromchara) / 2));
             rects[viewcnt - 1].setFillColor(sf::Color((1 - lengthfromchara / double(_raylength)) * 255, (1 - lengthfromchara / double(_raylength)) * 255, (1 - lengthfromchara / double(_raylength)) * 255));
           }
         }
