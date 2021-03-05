@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <math.h>
+#include <iostream>
 
 using namespace std;
 
@@ -12,7 +13,6 @@ private:
   vector<bool> trs;
 
 public:
-
   void setSize(int _size) {
     rects.resize(_size);
     trs.resize(_size);
@@ -23,12 +23,12 @@ public:
   }
 
   void update(sf::RenderWindow* _window, vector<sf::VertexArray>* rays, vector<sf::VertexArray>* walls, sf::Vector2f _charapos, int _raylength, double _raydirection) {
-    for (auto& tr : trs)
+    for (auto&& tr : trs)
       tr = false;
 
     for (auto& wall : *walls) {
       int viewcnt = 1;
-      for (auto& ray : *rays) {
+      for (auto&& ray : *rays) {
         /*
           ray[0].pos => ray[1].posw
           wall[0].pos => wall[1].pos
@@ -69,9 +69,7 @@ public:
             circle.setPosition(crossxpos, crossypos);
             _window->draw(circle);
 
-            // What happened?????????????????????
-            // pls god
-            rects[viewcnt - 1].setSize(sf::Vector2f(1000 / rays->size(), (lengthfromchara * cos(M_PI * (double(viewcnt) / rays->size()) * (viewcnt - int(rays->size() / 2))))));
+            rects[viewcnt - 1].setSize(sf::Vector2f(1000 / rays->size(), lengthfromchara));
             rects[viewcnt - 1].setPosition(sf::Vector2f(1000 + (viewcnt * (1000 / rays->size())), 100));
             rects[viewcnt - 1].setFillColor(sf::Color((1 - lengthfromchara / double(_raylength)) * 255, (1 - lengthfromchara / double(_raylength)) * 255, (1 - lengthfromchara / double(_raylength)) * 255));
           }
