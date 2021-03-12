@@ -27,7 +27,7 @@ int main() {
         window.close();
         break;
       }
-    } 
+    }
     window.clear();
 
     if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
